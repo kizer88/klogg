@@ -1,0 +1,21 @@
+# ninja log v5
+0	9	1780947779152988459	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-mkdir	c7483ac9bf80f311
+0	9	1780947779152988459	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-mkdir	c7483ac9bf80f311
+9	4889	1780947784032954616	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-download	64dc000171c99979
+9	4889	1780947784032954616	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-download	64dc000171c99979
+4889	4900	0	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-update	4f588bdd7a39c993
+4889	4900	0	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-update	4f588bdd7a39c993
+4900	4909	1780947784053954450	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-patch	ab297f120536da3e
+4900	4909	1780947784053954450	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-patch	ab297f120536da3e
+4909	4917	1780947784061954387	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-configure	af37d9ce5bfe913b
+4909	4917	1780947784061954387	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-configure	af37d9ce5bfe913b
+4917	4926	1780947784069954324	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-build	8a2e2c8255ed45f2
+4917	4926	1780947784069954324	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-build	8a2e2c8255ed45f2
+4926	4934	1780947784077954261	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-install	6df6292d27056652
+4926	4934	1780947784077954261	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-install	6df6292d27056652
+4934	4942	1780947784085954198	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-test	1de40606c30c7b24
+4934	4942	1780947784085954198	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-test	1de40606c30c7b24
+4942	4955	1780947784098954095	CMakeFiles/simdutf-populate-complete	492c20e82d5409ac
+4942	4955	1780947784098954095	simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-done	492c20e82d5409ac
+4942	4955	1780947784098954095	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/CMakeFiles/simdutf-populate-complete	492c20e82d5409ac
+4942	4955	1780947784098954095	/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/simdutf-populate-prefix/src/simdutf-populate-stamp/simdutf-populate-done	492c20e82d5409ac

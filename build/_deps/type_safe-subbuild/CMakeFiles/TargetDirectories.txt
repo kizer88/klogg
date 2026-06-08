@@ -1,0 +1,3 @@
+/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/CMakeFiles/type_safe-populate.dir
+/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/CMakeFiles/edit_cache.dir
+/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/CMakeFiles/rebuild_cache.dir

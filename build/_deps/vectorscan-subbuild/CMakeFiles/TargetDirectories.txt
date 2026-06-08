@@ -1,0 +1,3 @@
+/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/CMakeFiles/vectorscan-populate.dir
+/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/CMakeFiles/edit_cache.dir
+/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/CMakeFiles/vectorscan-populate"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/CMakeFiles/vectorscan-populate.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/CMakeFiles/vectorscan-populate-complete.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-build.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-configure.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-download.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-install.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-patch.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-test.rule"
+		},
+		{
+			"file" : "/home/savage-henry/projects/klogg/build/_deps/vectorscan-subbuild/vectorscan-populate-prefix/src/vectorscan-populate-stamp/vectorscan-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"vectorscan-populate"
+		],
+		"name" : "vectorscan-populate"
+	}
+}

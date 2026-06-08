@@ -1,0 +1,21 @@
+# ninja log v5
+0	10	1780947803177767837	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-mkdir	6af1ba03484dda60
+0	10	1780947803177767837	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-mkdir	6af1ba03484dda60
+10	1031	1780947804198756477	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-download	c16887b4263a92a9
+10	1031	1780947804198756477	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-download	c16887b4263a92a9
+1031	1041	0	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-update	7fdc9025a31c8119
+1031	1041	0	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-update	7fdc9025a31c8119
+1041	1049	1780947804216756275	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-patch	8020f9b825ebc41b
+1041	1049	1780947804216756275	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-patch	8020f9b825ebc41b
+1049	1058	1780947804225756174	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-configure	fb92af1dafa1ae1f
+1049	1058	1780947804225756174	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-configure	fb92af1dafa1ae1f
+1058	1066	1780947804233756085	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-build	382e1fa163f23558
+1058	1066	1780947804233756085	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-build	382e1fa163f23558
+1066	1075	1780947804242755984	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-install	d4e947b3c5ed43e7
+1066	1075	1780947804242755984	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-install	d4e947b3c5ed43e7
+1075	1083	1780947804250755894	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-test	a2ab974bd196f4f9
+1075	1083	1780947804250755894	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-test	a2ab974bd196f4f9
+1083	1095	1780947804262755760	CMakeFiles/cmocka-populate-complete	d41f9cf52e1496f
+1083	1095	1780947804262755760	cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-done	d41f9cf52e1496f
+1083	1095	1780947804262755760	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/CMakeFiles/cmocka-populate-complete	d41f9cf52e1496f
+1083	1095	1780947804262755760	/home/savage-henry/projects/klogg/build/_deps/cmocka-subbuild/cmocka-populate-prefix/src/cmocka-populate-stamp/cmocka-populate-done	d41f9cf52e1496f

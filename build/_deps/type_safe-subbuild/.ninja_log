@@ -1,0 +1,21 @@
+# ninja log v5
+0	11	1780947784403951686	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-mkdir	9363522d8b97b00f
+0	11	1780947784403951686	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-mkdir	9363522d8b97b00f
+11	1008	1780947785400943697	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-download	d290653fe4a02980
+11	1008	1780947785400943697	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-download	d290653fe4a02980
+1008	1017	0	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-update	ca5cde09516e5ba0
+1008	1017	0	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-update	ca5cde09516e5ba0
+1017	1025	1780947785417943558	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-patch	deb90ae0eb20ca3
+1017	1025	1780947785417943558	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-patch	deb90ae0eb20ca3
+1025	1033	1780947785425943492	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-configure	85939f9e8c2e2d1e
+1025	1033	1780947785425943492	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-configure	85939f9e8c2e2d1e
+1033	1042	1780947785434943419	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-build	f4ee7c82bae1f6ee
+1033	1042	1780947785434943419	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-build	f4ee7c82bae1f6ee
+1042	1050	1780947785442943353	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-install	494e9056478a92d5
+1042	1050	1780947785442943353	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-install	494e9056478a92d5
+1050	1059	1780947785451943280	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-test	f85b526da3642872
+1050	1059	1780947785451943280	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-test	f85b526da3642872
+1059	1072	1780947785464943173	CMakeFiles/type_safe-populate-complete	10bf361a27fb80d
+1059	1072	1780947785464943173	type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-done	10bf361a27fb80d
+1059	1072	1780947785464943173	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/CMakeFiles/type_safe-populate-complete	10bf361a27fb80d
+1059	1072	1780947785464943173	/home/savage-henry/projects/klogg/build/_deps/type_safe-subbuild/type_safe-populate-prefix/src/type_safe-populate-stamp/type_safe-populate-done	10bf361a27fb80d
