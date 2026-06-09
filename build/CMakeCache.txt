@@ -14,11 +14,29 @@
 # EXTERNAL cache entries
 ########################
 
+//Link with this object to setup backward automatically
+BACKWARD_ENABLE:STRING=$<TARGET_OBJECTS:backward_object>
+
+//Build dynamic backward-cpp shared lib
+BACKWARD_SHARED:BOOL=OFF
+
+//Enable tests
+BACKWARD_TESTS:BOOL=OFF
+
 //Path to a program.
 BASH:FILEPATH=/usr/bin/bash
 
+//Enabling support for AVX512
+BUILD_AVX512:BOOL=OFF
+
+//Enabling support for AVX512VBMI
+BUILD_AVX512VBMI:BOOL=OFF
+
 //build number
 BUILD_NUMBER:STRING=
+
+//Build efsw as a static library
+BUILD_STATIC_LIBS:BOOL=ON
 
 //Build the testing tree.
 BUILD_TESTING:BOOL=ON
@@ -27,10 +45,41 @@ BUILD_TESTING:BOOL=ON
 BUILD_VERSION:STRING=
 
 //The directory containing a CMake configuration file for Boost.
-Boost_DIR:PATH=Boost_DIR-NOTFOUND
+Boost_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0
 
 //Path to a file.
-Boost_INCLUDE_DIR:PATH=Boost_INCLUDE_DIR-NOTFOUND
+Boost_INCLUDE_DIR:PATH=/usr/include
+
+//Build documentation examples
+CATCH_BUILD_EXAMPLES:BOOL=OFF
+
+//Build extra tests
+CATCH_BUILD_EXTRA_TESTS:BOOL=OFF
+
+//Builds static library from the main implementation. EXPERIMENTAL
+CATCH_BUILD_STATIC_LIBRARY:BOOL=OFF
+
+//Build SelfTest project
+CATCH_BUILD_TESTING:BOOL=ON
+
+//Generate coverage for codecov.io
+CATCH_ENABLE_COVERAGE:BOOL=OFF
+
+//Enable all warnings as errors
+CATCH_ENABLE_WERROR:BOOL=ON
+
+//Install documentation alongside library
+CATCH_INSTALL_DOCS:BOOL=ON
+
+//Install contrib alongside library
+CATCH_INSTALL_HELPERS:BOOL=ON
+
+//Perform SelfTests with Valgrind
+CATCH_USE_VALGRIND:BOOL=OFF
+
+//Check and enable SSE2 extensions if supported. Disabling SSE
+// on platforms which support it may decrease performances.
+CHECK_SSE2:BOOL=ON
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -387,8 +436,26 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Value Computed by CMake
+CMLIBLZMA_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-build/cmliblzma
+
+//Value Computed by CMake
+CMLIBLZMA_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+CMLIBLZMA_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-src/cmliblzma
+
 //Path to include directory for cmocka_platform.h
 CMOCKA_PLATFORM_INCLUDE:PATH=
+
+//Value Computed by CMake
+CMZLIB_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-build/cmzlib
+
+//Value Computed by CMake
+CMZLIB_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+CMZLIB_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-src/cmzlib
 
 //Path to the coverage program that CTest uses for performing coverage
 // inspection
@@ -427,6 +494,24 @@ CPACK_BINARY_TXZ:BOOL=OFF
 //Enable to build TZ packages
 CPACK_BINARY_TZ:BOOL=ON
 
+//Enable to build RPM source packages
+CPACK_SOURCE_RPM:BOOL=OFF
+
+//Enable to build TBZ2 source packages
+CPACK_SOURCE_TBZ2:BOOL=ON
+
+//Enable to build TGZ source packages
+CPACK_SOURCE_TGZ:BOOL=ON
+
+//Enable to build TXZ source packages
+CPACK_SOURCE_TXZ:BOOL=ON
+
+//Enable to build TZ source packages
+CPACK_SOURCE_TZ:BOOL=ON
+
+//Enable to build ZIP source packages
+CPACK_SOURCE_ZIP:BOOL=OFF
+
 //Don't create a package lock file in the binary path
 CPM_DONT_CREATE_PACKAGE_LOCK:BOOL=OFF
 
@@ -457,6 +542,15 @@ CTEST_SUBMIT_RETRY_COUNT:STRING=3
 
 //How long to wait between timed-out CTest submissions.
 CTEST_SUBMIT_RETRY_DELAY:STRING=5
+
+//Value Computed by CMake
+Catch2_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/catch2-build
+
+//Value Computed by CMake
+Catch2_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Catch2_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/catch2-src
 
 //Maximum time allowed before CTest will kill the test.
 DART_TESTING_TIMEOUT:STRING=1500
@@ -489,11 +583,20 @@ DEBUG_ASSERT_NO_STDIO:BOOL=OFF
 //Value Computed by CMake
 DEBUG_ASSERT_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/type_safe-src/external/debug_assert
 
+//Enable debug output (warning: very verbose)
+DEBUG_OUTPUT:BOOL=OFF
+
+//Path to a program.
+DOXYGEN:FILEPATH=DOXYGEN-NOTFOUND
+
 //Dot tool for use with Doxygen
 DOXYGEN_DOT_EXECUTABLE:FILEPATH=/usr/bin/dot
 
 //Doxygen documentation generation tool (https://www.doxygen.nl)
 DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
+
+//Add efsw install targets
+EFSW_INSTALL:BOOL=OFF
 
 //Enable static analysis with clang-tidy
 ENABLE_CLANG_TIDY:BOOL=OFF
@@ -540,6 +643,14 @@ FETCHCONTENT_FULLY_DISCONNECTED:BOOL=OFF
 FETCHCONTENT_QUIET:BOOL=ON
 
 //When not empty, overrides where to find pre-populated content
+// for backward-cpp
+FETCHCONTENT_SOURCE_DIR_BACKWARD-CPP:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for Catch2
+FETCHCONTENT_SOURCE_DIR_CATCH2:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for cmocka
 FETCHCONTENT_SOURCE_DIR_CMOCKA:PATH=
 
@@ -548,8 +659,36 @@ FETCHCONTENT_SOURCE_DIR_CMOCKA:PATH=
 FETCHCONTENT_SOURCE_DIR_CROARING:PATH=
 
 //When not empty, overrides where to find pre-populated content
+// for efsw
+FETCHCONTENT_SOURCE_DIR_EFSW:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for exprtk
+FETCHCONTENT_SOURCE_DIR_EXPRTK:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for KDSingleApplication
+FETCHCONTENT_SOURCE_DIR_KDSINGLEAPPLICATION:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for KDToolBox
+FETCHCONTENT_SOURCE_DIR_KDTOOLBOX:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for KF5Archive
+FETCHCONTENT_SOURCE_DIR_KF5ARCHIVE:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for maddy
 FETCHCONTENT_SOURCE_DIR_MADDY:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for mimalloc
+FETCHCONTENT_SOURCE_DIR_MIMALLOC:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for robin_hood
+FETCHCONTENT_SOURCE_DIR_ROBIN_HOOD:PATH=
 
 //When not empty, overrides where to find pre-populated content
 // for simdutf
@@ -560,15 +699,37 @@ FETCHCONTENT_SOURCE_DIR_SIMDUTF:PATH=
 FETCHCONTENT_SOURCE_DIR_STREAMVBYTE:PATH=
 
 //When not empty, overrides where to find pre-populated content
+// for tbb
+FETCHCONTENT_SOURCE_DIR_TBB:PATH=
+
+//When not empty, overrides where to find pre-populated content
 // for type_safe
 FETCHCONTENT_SOURCE_DIR_TYPE_SAFE:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for Uchardet
+FETCHCONTENT_SOURCE_DIR_UCHARDET:PATH=
 
 //When not empty, overrides where to find pre-populated content
 // for vectorscan
 FETCHCONTENT_SOURCE_DIR_VECTORSCAN:PATH=
 
+//When not empty, overrides where to find pre-populated content
+// for whereami
+FETCHCONTENT_SOURCE_DIR_WHEREAMI:PATH=
+
+//When not empty, overrides where to find pre-populated content
+// for xxHash
+FETCHCONTENT_SOURCE_DIR_XXHASH:PATH=
+
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of backward-cpp
+FETCHCONTENT_UPDATES_DISCONNECTED_BACKWARD-CPP:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of Catch2
+FETCHCONTENT_UPDATES_DISCONNECTED_CATCH2:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of cmocka
 FETCHCONTENT_UPDATES_DISCONNECTED_CMOCKA:BOOL=OFF
@@ -576,8 +737,29 @@ FETCHCONTENT_UPDATES_DISCONNECTED_CMOCKA:BOOL=OFF
 //Enables UPDATE_DISCONNECTED behavior just for population of CRoaring
 FETCHCONTENT_UPDATES_DISCONNECTED_CROARING:BOOL=OFF
 
+//Enables UPDATE_DISCONNECTED behavior just for population of efsw
+FETCHCONTENT_UPDATES_DISCONNECTED_EFSW:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of exprtk
+FETCHCONTENT_UPDATES_DISCONNECTED_EXPRTK:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of KDSingleApplication
+FETCHCONTENT_UPDATES_DISCONNECTED_KDSINGLEAPPLICATION:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of KDToolBox
+FETCHCONTENT_UPDATES_DISCONNECTED_KDTOOLBOX:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of KF5Archive
+FETCHCONTENT_UPDATES_DISCONNECTED_KF5ARCHIVE:BOOL=OFF
+
 //Enables UPDATE_DISCONNECTED behavior just for population of maddy
 FETCHCONTENT_UPDATES_DISCONNECTED_MADDY:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of mimalloc
+FETCHCONTENT_UPDATES_DISCONNECTED_MIMALLOC:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of robin_hood
+FETCHCONTENT_UPDATES_DISCONNECTED_ROBIN_HOOD:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of simdutf
 FETCHCONTENT_UPDATES_DISCONNECTED_SIMDUTF:BOOL=OFF
@@ -585,11 +767,23 @@ FETCHCONTENT_UPDATES_DISCONNECTED_SIMDUTF:BOOL=OFF
 //Enables UPDATE_DISCONNECTED behavior just for population of streamvbyte
 FETCHCONTENT_UPDATES_DISCONNECTED_STREAMVBYTE:BOOL=OFF
 
+//Enables UPDATE_DISCONNECTED behavior just for population of tbb
+FETCHCONTENT_UPDATES_DISCONNECTED_TBB:BOOL=OFF
+
 //Enables UPDATE_DISCONNECTED behavior just for population of type_safe
 FETCHCONTENT_UPDATES_DISCONNECTED_TYPE_SAFE:BOOL=OFF
 
+//Enables UPDATE_DISCONNECTED behavior just for population of Uchardet
+FETCHCONTENT_UPDATES_DISCONNECTED_UCHARDET:BOOL=OFF
+
 //Enables UPDATE_DISCONNECTED behavior just for population of vectorscan
 FETCHCONTENT_UPDATES_DISCONNECTED_VECTORSCAN:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of whereami
+FETCHCONTENT_UPDATES_DISCONNECTED_WHEREAMI:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of xxHash
+FETCHCONTENT_UPDATES_DISCONNECTED_XXHASH:BOOL=OFF
 
 //Path to a program.
 GITCOMMAND:FILEPATH=/usr/bin/git
@@ -621,6 +815,45 @@ KLOGG_USE_SENTRY:BOOL=OFF
 //Use Vectorscan
 KLOGG_USE_VECTORSCAN:BOOL=ON
 
+//Value Computed by CMake
+Klogg_KArchive_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-build
+
+//Value Computed by CMake
+Klogg_KArchive_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Klogg_KArchive_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-src
+
+//Path to a file.
+LIBBFD_INCLUDE_DIR:PATH=LIBBFD_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+LIBBFD_LIBRARY:FILEPATH=LIBBFD_LIBRARY-NOTFOUND
+
+//Path to a file.
+LIBDL_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+LIBDL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libdl.a
+
+//Path to a file.
+LIBDWARF_INCLUDE_DIR:PATH=LIBDWARF_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+LIBDWARF_LIBRARY:FILEPATH=LIBDWARF_LIBRARY-NOTFOUND
+
+//Path to a file.
+LIBDW_INCLUDE_DIR:PATH=LIBDW_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+LIBDW_LIBRARY:FILEPATH=LIBDW_LIBRARY-NOTFOUND
+
+//Path to a file.
+LIBELF_INCLUDE_DIR:PATH=LIBELF_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+LIBELF_LIBRARY:FILEPATH=LIBELF_LIBRARY-NOTFOUND
+
 //Path to a library.
 LIBSTDCPP:FILEPATH=/usr/lib/gcc/x86_64-linux-gnu/11/libstdc++.a
 
@@ -632,6 +865,80 @@ MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
 
 //File that contains suppressions for the memory checker
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
+
+//Use full internal invariant checking in DEBUG mode (deprecated,
+// use MI_DEBUG_FULL instead)
+MI_CHECK_FULL:BOOL=OFF
+
+//Use full internal heap invariant checking in DEBUG mode (expensive)
+MI_DEBUG_FULL:BOOL=OFF
+
+//Build with thread sanitizer (needs clang)
+MI_DEBUG_TSAN:BOOL=OFF
+
+//Build with undefined-behavior sanitizer (needs clang++)
+MI_DEBUG_UBSAN:BOOL=OFF
+
+//Install directly into $CMAKE_INSTALL_PREFIX instead of PREFIX/lib/mimalloc-version
+MI_INSTALL_TOPLEVEL:BOOL=OFF
+
+//Set this when linking with musl libc
+MI_LIBC_MUSL:BOOL=OFF
+
+//Use slightly slower, dlopen-compatible TLS mechanism (Unix)
+MI_LOCAL_DYNAMIC_TLS:BOOL=OFF
+
+//Force no use of padding even in DEBUG mode etc.
+MI_NO_PADDING:BOOL=OFF
+
+//Disable transparent huge pages support on Linux/Android for the
+// mimalloc process only
+MI_NO_THP:BOOL=OFF
+
+//Use interpose to override standard malloc on macOS
+MI_OSX_INTERPOSE:BOOL=ON
+
+//Use malloc zone to override standard malloc on macOS
+MI_OSX_ZONE:BOOL=ON
+
+//Enable padding to detect heap block overflow (always on in DEBUG
+// or SECURE mode, or with Valgrind/ASAN)
+MI_PADDING:BOOL=OFF
+
+//Generate assembly files
+MI_SEE_ASM:BOOL=OFF
+
+//Show error and warning messages by default (only enabled by default
+// in DEBUG mode)
+MI_SHOW_ERRORS:BOOL=OFF
+
+//Skip collecting memory on program exit
+MI_SKIP_COLLECT_ON_EXIT:BOOL=OFF
+
+//Compile with address sanitizer support (adds a small overhead)
+MI_TRACK_ASAN:BOOL=OFF
+
+//Compile with Windows event tracing (ETW) support (adds a small
+// overhead)
+MI_TRACK_ETW:BOOL=OFF
+
+//Compile with Valgrind support (adds a small overhead)
+MI_TRACK_VALGRIND:BOOL=OFF
+
+//Use the C++ compiler to compile the library (instead of the C
+// compiler)
+MI_USE_CXX:BOOL=OFF
+
+//Explicitly link with -latomic (on older systems) (deprecated
+// and detected automatically)
+MI_USE_LIBATOMIC:BOOL=OFF
+
+//Use redirection module ('mimalloc-redirect') on Windows if compiling
+// mimalloc as a DLL
+MI_WIN_REDIRECT:BOOL=ON
+
+//Enable abort() call on memory allocation failure by default
+MI_XMALLOC:BOOL=OFF
 
 //Path to a program.
 NM:FILEPATH=/usr/bin/nm
@@ -657,8 +964,14 @@ Qt5Core_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core
 //The directory containing a CMake configuration file for Qt5Gui.
 Qt5Gui_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui
 
+//The directory containing a CMake configuration file for Qt5LinguistTools.
+Qt5LinguistTools_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools
+
 //The directory containing a CMake configuration file for Qt5Network.
 Qt5Network_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Network
+
+//The directory containing a CMake configuration file for Qt5Test.
+Qt5Test_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Test
 
 //The directory containing a CMake configuration file for Qt5Widgets.
 Qt5Widgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets
@@ -668,6 +981,9 @@ Qt5Xml_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Xml
 
 //The directory containing a CMake configuration file for Qt5.
 Qt5_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5
+
+//Path to a program.
+RAGEL:FILEPATH=/usr/bin/ragel
 
 //Build library C files using C++ compilation
 ROARING_BUILD_C_AS_CPP:BOOL=OFF
@@ -730,6 +1046,9 @@ RoaringBitmap_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 RoaringBitmap_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/croaring-src
 
+//Enable one of the code sanitizers
+SANITIZE:BOOL=OFF
+
 //Always include fallback
 SIMDUTF_ALWAYS_INCLUDE_FALLBACK:BOOL=OFF
 
@@ -770,6 +1089,33 @@ SIMDUTF_TOOLS:BOOL=ON
 //Name of the computer/site where compile is being run
 SITE:STRING=savage-henry-MS-7E12
 
+//Path to a program.
+SPHINX_BUILD:FILEPATH=SPHINX_BUILD-NOTFOUND
+
+//Auto detect backward's stack details dependencies
+STACK_DETAILS_AUTO_DETECT:BOOL=TRUE
+
+//Use backtrace from (e)glibc for symbols resolution
+STACK_DETAILS_BACKTRACE_SYMBOL:BOOL=FALSE
+
+//Use libbfd to read debug info
+STACK_DETAILS_BFD:BOOL=FALSE
+
+//Use libdw to read debug info
+STACK_DETAILS_DW:BOOL=FALSE
+
+//Use libdwarf/libelf to read debug info
+STACK_DETAILS_DWARF:BOOL=FALSE
+
+//Use backtrace from (e)glibc for stack walking
+STACK_WALKING_BACKTRACE:BOOL=FALSE
+
+//Use libunwind for stack walking
+STACK_WALKING_LIBUNWIND:BOOL=FALSE
+
+//Use compiler's unwind API
+STACK_WALKING_UNWIND:BOOL=TRUE
+
 //Value Computed by CMake
 STREAMVBYTE_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/streamvbyte-build
 
@@ -802,6 +1148,67 @@ STREAMVBYTE_WALL:BOOL=ON
 
 //Treat warnings as errors.
 STREAMVBYTE_WERROR:BOOL=OFF
+
+//Target CPU architecture. It is autodetected if not specified.
+TARGET_ARCHITECTURE:STRING=
+
+//Enable tbb4py build
+TBB4PY_BUILD:BOOL=OFF
+
+//Enable tbbmalloc build
+TBBMALLOC_BUILD:BOOL=ON
+
+//Enable tbbmalloc_proxy build
+TBBMALLOC_PROXY_BUILD:BOOL=ON
+
+//Value Computed by CMake
+TBB_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/tbb-build
+
+//Enable tbb build
+TBB_BUILD:BOOL=ON
+
+//Enable preview features of the library
+TBB_CPF:BOOL=OFF
+
+//Disable HWLOC automatic search by pkg-config tool
+TBB_DISABLE_HWLOC_AUTOMATIC_SEARCH:BOOL=OFF
+
+//Enable Interprocedural Optimization (IPO) during the compilation
+TBB_ENABLE_IPO:BOOL=ON
+
+//Enable search for external oneTBB using find_package instead
+// of build from sources
+TBB_FIND_PACKAGE:BOOL=OFF
+
+//Enable fuzz testing
+TBB_FUZZ_TESTING:BOOL=OFF
+
+//Enable installation
+TBB_INSTALL:BOOL=ON
+
+//Enable auto-generated vars installation
+TBB_INSTALL_VARS:BOOL=OFF
+
+//Value Computed by CMake
+TBB_IS_TOP_LEVEL:STATIC=OFF
+
+//Apply /APPCONTAINER:NO (for testing binaries for Windows Store)
+TBB_NO_APPCONTAINER:BOOL=OFF
+
+//Sanitizer parameter passed to compiler/linker
+TBB_SANITIZE:STRING=
+
+//Value Computed by CMake
+TBB_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/tbb-src
+
+//Generate test specification (Doxygen)
+TBB_TEST_SPEC:BOOL=OFF
+
+//Enable scan for memory leaks using Valgrind
+TBB_VALGRIND_MEMCHECK:BOOL=OFF
+
+//Build as Universal Windows Driver (UWD)
+TBB_WINDOWS_DRIVER:BOOL=OFF
 
 //which policy (ub/checked/default) is going to be used
 TYPE_SAFE_ARITHMETIC_POLICY:STRING=ub
@@ -848,6 +1255,9 @@ UCM_UNITY_BUILD:BOOL=OFF
 //Build with unit testing
 UNIT_TESTING:BOOL=OFF
 
+//Build efsw with verbose mode.
+VERBOSE:BOOL=OFF
+
 //Treat compiler warnings as errors
 WARNINGS_AS_ERRORS:BOOL=ON
 
@@ -859,6 +1269,29 @@ WITH_EXAMPLES:BOOL=ON
 
 //Build with a static library
 WITH_STATIC_LIB:BOOL=OFF
+
+XXHASH_BUNDLED_MODE:BOOL=ON
+
+//Value Computed by CMake
+backward_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/backward-cpp-build
+
+//Value Computed by CMake
+backward_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+backward_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/backward-cpp-src
+
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.83.0
+
+//Value Computed by CMake
+bzip2_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-build/cmbzip2
+
+//Value Computed by CMake
+bzip2_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+bzip2_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/kf5archive-src/cmbzip2
 
 //Value Computed by CMake
 cmocka-examples_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/cmocka-build/example
@@ -909,6 +1342,15 @@ cmocka_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/cmocka-sr
 debug_assert_DIR:PATH=debug_assert_DIR-NOTFOUND
 
 //Value Computed by CMake
+efsw_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/efsw-build
+
+//Value Computed by CMake
+efsw_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+efsw_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/efsw-src
+
+//Value Computed by CMake
 klogg_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build
 
 //Value Computed by CMake
@@ -916,6 +1358,15 @@ klogg_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 klogg_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg
+
+//Value Computed by CMake
+libmimalloc_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/mimalloc-build
+
+//Value Computed by CMake
+libmimalloc_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+libmimalloc_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/mimalloc-src
 
 //Value Computed by CMake
 maddy_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/maddy-build
@@ -927,6 +1378,15 @@ maddy_IS_TOP_LEVEL:STATIC=OFF
 maddy_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/maddy-src
 
 //Value Computed by CMake
+robin-hood-hashing_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/robin_hood-build
+
+//Value Computed by CMake
+robin-hood-hashing_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+robin-hood-hashing_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/robin_hood-src
+
+//Value Computed by CMake
 simdutf_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/simdutf-build
 
 //Value Computed by CMake
@@ -934,6 +1394,21 @@ simdutf_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 simdutf_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/simdutf-src
+
+//Dependencies for the target
+tbb_LIB_DEPENDS:STATIC=general;dl;
+
+//Dependencies for the target
+tbbmalloc_LIB_DEPENDS:STATIC=general;dl;
+
+//Value Computed by CMake
+uchardet_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/uchardet-build
+
+//Value Computed by CMake
+uchardet_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+uchardet_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/uchardet-src
 
 //Value Computed by CMake
 vectorscan_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/vectorscan-build
@@ -943,6 +1418,15 @@ vectorscan_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 vectorscan_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/vectorscan-src
+
+//Value Computed by CMake
+xxHash_BINARY_DIR:STATIC=/home/savage-henry/projects/klogg/build/xxhash
+
+//Value Computed by CMake
+xxHash_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+xxHash_SOURCE_DIR:STATIC=/home/savage-henry/projects/klogg/build/_deps/xxhash-src/cmake_unofficial
 
 
 ########################
@@ -959,10 +1443,28 @@ ARCH_IA32:INTERNAL=
 ARCH_PPC64EL:INTERNAL=
 //Test ARCH_X86_64
 ARCH_X86_64:INTERNAL=1
+//ADVANCED property for variable: BACKWARD_DEFINITIONS
+BACKWARD_DEFINITIONS-ADVANCED:INTERNAL=1
+//BACKWARD_DEFINITIONS
+BACKWARD_DEFINITIONS:INTERNAL=BACKWARD_HAS_UNWIND=1;BACKWARD_HAS_LIBUNWIND=0;BACKWARD_HAS_BACKTRACE=0;BACKWARD_HAS_BACKTRACE_SYMBOL=1;BACKWARD_HAS_DW=0;BACKWARD_HAS_BFD=0;BACKWARD_HAS_DWARF=0
+//ADVANCED property for variable: BACKWARD_INCLUDE_DIRS
+BACKWARD_INCLUDE_DIRS-ADVANCED:INTERNAL=1
+//_BACKWARD_INCLUDE_DIRS
+BACKWARD_INCLUDE_DIRS:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/backward-cpp-src
+//ADVANCED property for variable: BACKWARD_LIBRARIES
+BACKWARD_LIBRARIES-ADVANCED:INTERNAL=1
+//BACKWARD_LIBRARIES
+BACKWARD_LIBRARIES:INTERNAL=
+//Build shared libraries
+BUILD_SHARED_LIBS:INTERNAL=OFF
 //ADVANCED property for variable: Boost_DIR
 Boost_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_INCLUDE_DIR
-Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//Test CC_PAREN_EQUALITY
+CC_PAREN_EQUALITY:INTERNAL=
+//Test CC_SELF_ASSIGN
+CC_SELF_ASSIGN:INTERNAL=
+//Test CC_STRINGOP_OVERFLOW
+CC_STRINGOP_OVERFLOW:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -1114,7 +1616,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=26
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=66
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1191,40 +1693,121 @@ CPACK_BINARY_TGZ-ADVANCED:INTERNAL=1
 CPACK_BINARY_TXZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_TZ
 CPACK_BINARY_TZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_RPM
+CPACK_SOURCE_RPM-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TBZ2
+CPACK_SOURCE_TBZ2-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TGZ
+CPACK_SOURCE_TGZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TXZ
+CPACK_SOURCE_TXZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TZ
+CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_ZIP
+CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
 CPM_DIRECTORY:INTERNAL=/home/savage-henry/projects/klogg/cmake
 //Don't download or configure dependencies (for testing)
 CPM_DRY_RUN:INTERNAL=OFF
 CPM_FILE:INTERNAL=/home/savage-henry/projects/klogg/cmake/CPM.cmake
 CPM_INDENT:INTERNAL=CPM:
 CPM_MODULE_PATH:INTERNAL=/home/savage-henry/projects/klogg/build/CPM_modules
-CPM_PACKAGES:INTERNAL=simdutf;type_safe;CRoaring;cmocka;streamvbyte;maddy;vectorscan
+CPM_PACKAGES:INTERNAL=simdutf;type_safe;CRoaring;cmocka;streamvbyte;maddy;vectorscan;Uchardet;KF5Archive;robin_hood;backward-cpp;Catch2;KDSingleApplication;xxHash;whereami;exprtk;KDToolBox;efsw;tbb;mimalloc
 CPM_PACKAGE_CRoaring_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/croaring-build
 CPM_PACKAGE_CRoaring_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/croaring-src
 CPM_PACKAGE_CRoaring_VERSION:INTERNAL=4.2.1
+CPM_PACKAGE_Catch2_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/catch2-build
+CPM_PACKAGE_Catch2_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/catch2-src
+CPM_PACKAGE_Catch2_VERSION:INTERNAL=2.13.8
+CPM_PACKAGE_KDSingleApplication_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/kdsingleapplication-build
+CPM_PACKAGE_KDSingleApplication_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/kdsingleapplication-src
+CPM_PACKAGE_KDSingleApplication_VERSION:INTERNAL=0
+CPM_PACKAGE_KDToolBox_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/kdtoolbox-build
+CPM_PACKAGE_KDToolBox_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/kdtoolbox-src
+CPM_PACKAGE_KDToolBox_VERSION:INTERNAL=0
+CPM_PACKAGE_KF5Archive_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/kf5archive-build
+CPM_PACKAGE_KF5Archive_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/kf5archive-src
+CPM_PACKAGE_KF5Archive_VERSION:INTERNAL=0
 CPM_PACKAGE_LOCK_FILE:INTERNAL=/home/savage-henry/projects/klogg/build/cpm-package-lock.cmake
+CPM_PACKAGE_Uchardet_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/uchardet-build
+CPM_PACKAGE_Uchardet_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/uchardet-src
+CPM_PACKAGE_Uchardet_VERSION:INTERNAL=0.0.8
+CPM_PACKAGE_backward-cpp_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/backward-cpp-build
+CPM_PACKAGE_backward-cpp_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/backward-cpp-src
+CPM_PACKAGE_backward-cpp_VERSION:INTERNAL=1.6
 CPM_PACKAGE_cmocka_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/cmocka-build
 CPM_PACKAGE_cmocka_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/cmocka-src
 CPM_PACKAGE_cmocka_VERSION:INTERNAL=
+CPM_PACKAGE_efsw_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/efsw-build
+CPM_PACKAGE_efsw_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/efsw-src
+CPM_PACKAGE_efsw_VERSION:INTERNAL=1.4.1
+CPM_PACKAGE_exprtk_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/exprtk-build
+CPM_PACKAGE_exprtk_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/exprtk-src
+CPM_PACKAGE_exprtk_VERSION:INTERNAL=0
 CPM_PACKAGE_maddy_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/maddy-build
 CPM_PACKAGE_maddy_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/maddy-src
 CPM_PACKAGE_maddy_VERSION:INTERNAL=0
+CPM_PACKAGE_mimalloc_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/mimalloc-build
+CPM_PACKAGE_mimalloc_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/mimalloc-src
+CPM_PACKAGE_mimalloc_VERSION:INTERNAL=2.1.7
+CPM_PACKAGE_robin_hood_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/robin_hood-build
+CPM_PACKAGE_robin_hood_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/robin_hood-src
+CPM_PACKAGE_robin_hood_VERSION:INTERNAL=3.11.2
 CPM_PACKAGE_simdutf_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/simdutf-build
 CPM_PACKAGE_simdutf_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/simdutf-src
 CPM_PACKAGE_simdutf_VERSION:INTERNAL=5.6.2
 CPM_PACKAGE_streamvbyte_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/streamvbyte-build
 CPM_PACKAGE_streamvbyte_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/streamvbyte-src
 CPM_PACKAGE_streamvbyte_VERSION:INTERNAL=1.0.0
+CPM_PACKAGE_tbb_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/tbb-build
+CPM_PACKAGE_tbb_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/tbb-src
+CPM_PACKAGE_tbb_VERSION:INTERNAL=0
 CPM_PACKAGE_type_safe_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/type_safe-build
 CPM_PACKAGE_type_safe_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/type_safe-src
 CPM_PACKAGE_type_safe_VERSION:INTERNAL=0.2.4
 CPM_PACKAGE_vectorscan_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/vectorscan-build
 CPM_PACKAGE_vectorscan_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/vectorscan-src
 CPM_PACKAGE_vectorscan_VERSION:INTERNAL=0
+CPM_PACKAGE_whereami_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/whereami-build
+CPM_PACKAGE_whereami_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/whereami-src
+CPM_PACKAGE_whereami_VERSION:INTERNAL=0
+CPM_PACKAGE_xxHash_BINARY_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/xxhash-build
+CPM_PACKAGE_xxHash_SOURCE_DIR:INTERNAL=/home/savage-henry/projects/klogg/build/_deps/xxhash-src
+CPM_PACKAGE_xxHash_VERSION:INTERNAL=0.8.1
 CPM_VERSION:INTERNAL=0.38.1
 //ADVANCED property for variable: CTEST_SUBMIT_RETRY_COUNT
 CTEST_SUBMIT_RETRY_COUNT-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CTEST_SUBMIT_RETRY_DELAY
 CTEST_SUBMIT_RETRY_DELAY-ADVANCED:INTERNAL=1
+//Test CXX_BITWISE_INSTEAD_OF_LOGICAL
+CXX_BITWISE_INSTEAD_OF_LOGICAL:INTERNAL=
+//Test CXX_IGNORED_ATTR
+CXX_IGNORED_ATTR:INTERNAL=1
+//Test CXX_MISSING_DECLARATIONS
+CXX_MISSING_DECLARATIONS:INTERNAL=1
+//Test CXX_REDUNDANT_MOVE
+CXX_REDUNDANT_MOVE:INTERNAL=1
+//Test CXX_SELF_ASSIGN
+CXX_SELF_ASSIGN:INTERNAL=
+//Test CXX_STRINGOP_OVERFLOW
+CXX_STRINGOP_OVERFLOW:INTERNAL=1
+//Test CXX_UNUSED_BUT_SET_VAR
+CXX_UNUSED_BUT_SET_VAR:INTERNAL=1
+//Test CXX_UNUSED_CONST_VAR
+CXX_UNUSED_CONST_VAR:INTERNAL=1
+//Test CXX_UNUSED_LOCAL_TYPEDEFS
+CXX_UNUSED_LOCAL_TYPEDEFS:INTERNAL=1
+//Test CXX_WEAK_VTABLES
+CXX_WEAK_VTABLES:INTERNAL=
+//Test CXX_WUNUSED_VARIABLE
+CXX_WUNUSED_VARIABLE:INTERNAL=1
+//Test C_FLAG_Wmissing_prototypes
+C_FLAG_Wmissing_prototypes:INTERNAL=1
+//Test C_FLAG_Wpointer_arith
+C_FLAG_Wpointer_arith:INTERNAL=1
+//Test C_FLAG_Wstrict_prototypes
+C_FLAG_Wstrict_prototypes:INTERNAL=1
+//Test C_FLAG_Wvla
+C_FLAG_Wvla:INTERNAL=1
 //ADVANCED property for variable: DART_TESTING_TIMEOUT
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
 //Default C Compiler Flags
@@ -1235,6 +1818,8 @@ DEFAULT_LINK_FLAGS:INTERNAL=
 DOXYGEN_DOT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: DOXYGEN_EXECUTABLE
 DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
+//Details about finding Backward
+FIND_PACKAGE_MESSAGE_DETAILS_Backward:INTERNAL=[/home/savage-henry/projects/klogg/build/_deps/backward-cpp-src][v()]
 //Details about finding Iconv
 FIND_PACKAGE_MESSAGE_DETAILS_Iconv:INTERNAL=[built in to C library][v()]
 //Details about finding PkgConfig
@@ -1247,14 +1832,44 @@ FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 GITCOMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
+//Test HAS_CXX_HIDDEN
+HAS_CXX_HIDDEN:INTERNAL=1
+//Test HAS_C_HIDDEN
+HAS_C_HIDDEN:INTERNAL=1
 //Have include assert.h
 HAVE_ASSERT_H:INTERNAL=1
+//Test HAVE_AVX2
+HAVE_AVX2:INTERNAL=1
+//Test HAVE_AVX512
+HAVE_AVX512:INTERNAL=1
+//Test HAVE_AVX512VBMI
+HAVE_AVX512VBMI:INTERNAL=1
+//Test HAVE_BSWAP_16
+HAVE_BSWAP_16:INTERNAL=1
+//Test HAVE_BSWAP_32
+HAVE_BSWAP_32:INTERNAL=1
+//Test HAVE_BSWAP_64
+HAVE_BSWAP_64:INTERNAL=1
+//Have include byteswap.h
+HAVE_BYTESWAP_H:INTERNAL=1
 //Have function calloc
 HAVE_CALLOC:INTERNAL=1
+//Test HAVE_CC_BUILTIN_ASSUME_ALIGNED
+HAVE_CC_BUILTIN_ASSUME_ALIGNED:INTERNAL=1
 //Have function clock_gettime
 HAVE_CLOCK_GETTIME:INTERNAL=1
 //Test HAVE_CLOCK_REALTIME
 HAVE_CLOCK_REALTIME:INTERNAL=1
+//Test HAVE_CXX_BUILTIN_ASSUME_ALIGNED
+HAVE_CXX_BUILTIN_ASSUME_ALIGNED:INTERNAL=1
+//Have include intrin.h
+HAVE_CXX_INTRIN_H:INTERNAL=
+//Have include x86intrin.h
+HAVE_CXX_X86INTRIN_H:INTERNAL=1
+//Have includes intrin.h
+HAVE_C_INTRIN_H:INTERNAL=
+//Have include x86intrin.h
+HAVE_C_X86INTRIN_H:INTERNAL=1
 //Have function exit
 HAVE_EXIT:INTERNAL=1
 //Have function fprintf
@@ -1263,10 +1878,22 @@ HAVE_FPRINTF:INTERNAL=1
 HAVE_FREE:INTERNAL=1
 //Test HAVE_GCC_THREAD_LOCAL_STORAGE
 HAVE_GCC_THREAD_LOCAL_STORAGE:INTERNAL=1
+//Result of TRY_COMPILE
+HAVE_INT16_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_INT32_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_INT64_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_INTMAX_T:INTERNAL=TRUE
 //Have include inttypes.h
 HAVE_INTTYPES_H:INTERNAL=1
 //Have include io.h
 HAVE_IO_H:INTERNAL=
+//Have symbol _LIBCPP_VERSION
+HAVE_LIBCPP:INTERNAL=
+//Have include limits.h
+HAVE_LIMITS_H:INTERNAL=1
 //Have function longjmp
 HAVE_LONGJMP:INTERNAL=1
 //Have function malloc
@@ -1279,6 +1906,10 @@ HAVE_MEMCPY:INTERNAL=1
 HAVE_MEMORY_H:INTERNAL=1
 //Have function memset
 HAVE_MEMSET:INTERNAL=1
+//Have function mmap
+HAVE_MMAP:INTERNAL=1
+//Have function posix_memalign
+HAVE_POSIX_MEMALIGN:INTERNAL=1
 //Have function printf
 HAVE_PRINTF:INTERNAL=1
 //Have function setjmp
@@ -1291,10 +1922,32 @@ HAVE_SIGLONGJMP:INTERNAL=1
 HAVE_SIGNAL:INTERNAL=1
 //Have include signal.h
 HAVE_SIGNAL_H:INTERNAL=1
+//Result of TRY_COMPILE
+HAVE_SIZEOF_SIZE_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_INT:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_LONG:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_LONG_LONG:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_SHORT:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_UNSIGNED:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_UNSIGNED_LONG:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_UNSIGNED_LONG_LONG:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_SIZE_OF_UNSIGNED_SHORT:INTERNAL=TRUE
 //Have function sprintf
 HAVE_SNPRINTF:INTERNAL=1
+//Test HAVE_SSE42
+HAVE_SSE42:INTERNAL=1
 //Have include stdarg.h
 HAVE_STDARG_H:INTERNAL=1
+//Have include stdbool.h
+HAVE_STDBOOL_H:INTERNAL=1
 //Have include stddef.h
 HAVE_STDDEF_H:INTERNAL=1
 //Have include stdint.h
@@ -1315,17 +1968,92 @@ HAVE_STRSIGNAL:INTERNAL=1
 HAVE_STRUCT_TIMESPEC:INTERNAL=1
 //Have include sys/stat.h
 HAVE_SYS_STAT_H:INTERNAL=1
+//Have include sys/sysctl.h
+HAVE_SYS_SYSCTL_H:INTERNAL=
 //Have include sys/types.h
 HAVE_SYS_TYPES_H:INTERNAL=1
 //Have include time.h
 HAVE_TIME_H:INTERNAL=1
+//Result of TRY_COMPILE
+HAVE_UINT16_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_UINT32_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_UINT64_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_UINT8_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_UINTMAX_T:INTERNAL=TRUE
+//Result of TRY_COMPILE
+HAVE_UINTPTR_T:INTERNAL=TRUE
 //Have include unistd.h
 HAVE_UNISTD_H:INTERNAL=1
+//Result of TRY_COMPILE
+HAVE_UNSIGNED___INT64:INTERNAL=FALSE
 //Have function vsnprintf
 HAVE_VSNPRINTF:INTERNAL=1
+//Have function _aligned_malloc
+HAVE__ALIGNED_MALLOC:INTERNAL=
+//Test HAVE__BUILTIN_CONSTANT_P
+HAVE__BUILTIN_CONSTANT_P:INTERNAL=1
+//Result of TRY_COMPILE
+HAVE___INT64:INTERNAL=FALSE
+HWLOC_CFLAGS:INTERNAL=
+HWLOC_CFLAGS_I:INTERNAL=
+HWLOC_CFLAGS_OTHER:INTERNAL=
+HWLOC_FOUND:INTERNAL=
+HWLOC_INCLUDEDIR:INTERNAL=
+HWLOC_LIBDIR:INTERNAL=
+HWLOC_LIBS:INTERNAL=
+HWLOC_LIBS_L:INTERNAL=
+HWLOC_LIBS_OTHER:INTERNAL=
+HWLOC_LIBS_PATHS:INTERNAL=
+HWLOC_MODULE_NAME:INTERNAL=
+HWLOC_PREFIX:INTERNAL=
+HWLOC_STATIC_CFLAGS:INTERNAL=
+HWLOC_STATIC_CFLAGS_I:INTERNAL=
+HWLOC_STATIC_CFLAGS_OTHER:INTERNAL=
+HWLOC_STATIC_LIBDIR:INTERNAL=
+HWLOC_STATIC_LIBS:INTERNAL=
+HWLOC_STATIC_LIBS_L:INTERNAL=
+HWLOC_STATIC_LIBS_OTHER:INTERNAL=
+HWLOC_STATIC_LIBS_PATHS:INTERNAL=
+HWLOC_VERSION:INTERNAL=
+HWLOC_hwloc_INCLUDEDIR:INTERNAL=
+HWLOC_hwloc_LIBDIR:INTERNAL=
+HWLOC_hwloc_PREFIX:INTERNAL=
+HWLOC_hwloc_VERSION:INTERNAL=
 INCLUDE_INSTALL_DIR:INTERNAL=include
+//CHECK_TYPE_SIZE: sizeof(int16_t)
+INT16_T:INTERNAL=2
+//CHECK_TYPE_SIZE: sizeof(int32_t)
+INT32_T:INTERNAL=4
+//CHECK_TYPE_SIZE: sizeof(int64_t)
+INT64_T:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(intmax_t)
+INTMAX_T:INTERNAL=8
 //Test Iconv_IS_BUILT_IN
 Iconv_IS_BUILT_IN:INTERNAL=1
+//ADVANCED property for variable: LIBBFD_INCLUDE_DIR
+LIBBFD_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBBFD_LIBRARY
+LIBBFD_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBDL_INCLUDE_DIR
+LIBDL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBDL_LIBRARY
+LIBDL_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBDWARF_INCLUDE_DIR
+LIBDWARF_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBDWARF_LIBRARY
+LIBDWARF_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBDW_INCLUDE_DIR
+LIBDW_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBDW_LIBRARY
+LIBDW_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBELF_INCLUDE_DIR
+LIBELF_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: LIBELF_LIBRARY
+LIBELF_LIBRARY-ADVANCED:INTERNAL=1
 LIB_INSTALL_DIR:INTERNAL=lib
 //ADVANCED property for variable: MAKECOMMAND
 MAKECOMMAND-ADVANCED:INTERNAL=1
@@ -1333,6 +2061,31 @@ MAKECOMMAND-ADVANCED:INTERNAL=1
 MEMORYCHECK_COMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: MEMORYCHECK_SUPPRESSIONS_FILE
 MEMORYCHECK_SUPPRESSIONS_FILE-ADVANCED:INTERNAL=1
+PCRE_CFLAGS:INTERNAL=
+PCRE_CFLAGS_I:INTERNAL=
+PCRE_CFLAGS_OTHER:INTERNAL=
+PCRE_FOUND:INTERNAL=
+PCRE_INCLUDEDIR:INTERNAL=
+PCRE_LIBDIR:INTERNAL=
+PCRE_LIBS:INTERNAL=
+PCRE_LIBS_L:INTERNAL=
+PCRE_LIBS_OTHER:INTERNAL=
+PCRE_LIBS_PATHS:INTERNAL=
+PCRE_MODULE_NAME:INTERNAL=
+PCRE_PREFIX:INTERNAL=
+PCRE_STATIC_CFLAGS:INTERNAL=
+PCRE_STATIC_CFLAGS_I:INTERNAL=
+PCRE_STATIC_CFLAGS_OTHER:INTERNAL=
+PCRE_STATIC_LIBDIR:INTERNAL=
+PCRE_STATIC_LIBS:INTERNAL=
+PCRE_STATIC_LIBS_L:INTERNAL=
+PCRE_STATIC_LIBS_OTHER:INTERNAL=
+PCRE_STATIC_LIBS_PATHS:INTERNAL=
+PCRE_VERSION:INTERNAL=
+PCRE_libpcre_INCLUDEDIR:INTERNAL=
+PCRE_libpcre_LIBDIR:INTERNAL=
+PCRE_libpcre_PREFIX:INTERNAL=
+PCRE_libpcre_VERSION:INTERNAL=
 //ADVANCED property for variable: PKG_CONFIG_ARGN
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
@@ -1345,6 +2098,44 @@ REQUIRED_FLAGS_WFORMAT:INTERNAL=1
 SIMDUTF_INSTALL_CMAKEDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SITE
 SITE-ADVANCED:INTERNAL=1
+//CHECK_TYPE_SIZE: sizeof(size_t)
+SIZEOF_SIZE_T:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(int)
+SIZE_OF_INT:INTERNAL=4
+//CHECK_TYPE_SIZE: sizeof(long)
+SIZE_OF_LONG:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(long long)
+SIZE_OF_LONG_LONG:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(short)
+SIZE_OF_SHORT:INTERNAL=2
+//CHECK_TYPE_SIZE: sizeof(unsigned)
+SIZE_OF_UNSIGNED:INTERNAL=4
+//CHECK_TYPE_SIZE: sizeof(unsigned long)
+SIZE_OF_UNSIGNED_LONG:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(unsigned long long)
+SIZE_OF_UNSIGNED_LONG_LONG:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(unsigned short)
+SIZE_OF_UNSIGNED_SHORT:INTERNAL=2
+//Test SUPPORTS_CFLAG_SSE2
+SUPPORTS_CFLAG_SSE2:INTERNAL=1
+//Test SUPPORTS_CFLAG_SSE_MATH
+SUPPORTS_CFLAG_SSE_MATH:INTERNAL=1
+//STRINGS property for variable: TBB_SANITIZE
+TBB_SANITIZE-STRINGS:INTERNAL=thread;memory;leak;address -fno-omit-frame-pointer
+//CHECK_TYPE_SIZE: sizeof(uint16_t)
+UINT16_T:INTERNAL=2
+//CHECK_TYPE_SIZE: sizeof(uint32_t)
+UINT32_T:INTERNAL=4
+//CHECK_TYPE_SIZE: sizeof(uint64_t)
+UINT64_T:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(uint8_t)
+UINT8_T:INTERNAL=1
+//CHECK_TYPE_SIZE: sizeof(uintmax_t)
+UINTMAX_T:INTERNAL=8
+//CHECK_TYPE_SIZE: sizeof(uintptr_t)
+UINTPTR_T:INTERNAL=8
+//CHECK_TYPE_SIZE: unsigned __int64 unknown
+UNSIGNED___INT64:INTERNAL=
 //Test WALL_GNU_SUPPORTED
 WALL_GNU_SUPPORTED:INTERNAL=1
 //Test WITH_FNO_COMMON_FLAG
@@ -1409,14 +2200,8 @@ WITH_WSTRICT_PROTOTYPES_FLAG:INTERNAL=1
 WITH_WUNINITIALIZED_FLAG:INTERNAL=1
 //Test WITH_WWRITE_STRINGS_FLAG
 WITH_WWRITE_STRINGS_FLAG:INTERNAL=1
-//Components requested for this build tree.
-_Boost_COMPONENTS_SEARCHED:INTERNAL=
-//Last used Boost_INCLUDE_DIR value.
-_Boost_INCLUDE_DIR_LAST:INTERNAL=Boost_INCLUDE_DIR-NOTFOUND
-//Last used Boost_NAMESPACE value.
-_Boost_NAMESPACE_LAST:INTERNAL=boost
-//Last used Boost_USE_MULTITHREADED value.
-_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
+//ADVANCED property for variable: XXHASH_BUNDLED_MODE
+XXHASH_BUNDLED_MODE-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
@@ -1432,4 +2217,18 @@ _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;3;64;32;;cpython-312-x86_64
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=4c8bfa8951e99fa32e4000a94f8c04a2
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
+//CHECK_TYPE_SIZE: __int64 unknown
+__INT64:INTERNAL=
+__pkg_config_checked_HWLOC:INTERNAL=1
+__pkg_config_checked_PCRE:INTERNAL=1
+//Have symbol getcontext
+_tbb_have_ucontext:INTERNAL=1
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
+//Test mi_has_libatomic
+mi_has_libatomic:INTERNAL=1
+//Test mi_has_libpthread
+mi_has_libpthread:INTERNAL=1
+//Test mi_has_librt
+mi_has_librt:INTERNAL=1
 
