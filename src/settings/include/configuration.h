@@ -516,6 +516,15 @@ class Configuration final : public Persistable<Configuration> {
         hideAnsiColorSequences_ = hide;
     }
 
+    bool extractCmtraceMessage() const
+    {
+        return extractCmtraceMessage_;
+    }
+    void setExtractCmtraceMessage( bool enable )
+    {
+        extractCmtraceMessage_ = enable;
+    }
+
     int defaultEncodingMib() const
     {
         return defaultEncodingMib_;
@@ -609,6 +618,8 @@ class Configuration final : public Persistable<Configuration> {
     bool optimizeForNotLatinEncodings_ = false;
 
     bool hideAnsiColorSequences_ = false;
+
+    bool extractCmtraceMessage_ = false;
 
     int defaultEncodingMib_ = -1;
 

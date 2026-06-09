@@ -279,6 +279,11 @@ void Configuration::retrieveFromStorage( QSettings& settings )
               .value( "view.hideAnsiColorSequences", DefaultConfiguration.hideAnsiColorSequences_ )
               .toBool();
 
+    extractCmtraceMessage_
+        = settings
+              .value( "view.extractCmtraceMessage", DefaultConfiguration.extractCmtraceMessage_ )
+              .toBool();
+
     useTextWrap_ = settings.value( "view.textWrap", DefaultConfiguration.useTextWrap() ).toBool();
 
     style_ = settings.value( "view.style", DefaultConfiguration.style_ ).toString();
@@ -417,6 +422,7 @@ void Configuration::saveToStorage( QSettings& settings ) const
     settings.setValue( "view.scaleFactorRounding", scaleFactorRounding_ );
 
     settings.setValue( "view.hideAnsiColorSequences", hideAnsiColorSequences_ );
+    settings.setValue( "view.extractCmtraceMessage", extractCmtraceMessage_ );
 
     settings.setValue( "defaultView.searchAutoRefresh", searchAutoRefresh_ );
     settings.setValue( "defaultView.searchIgnoreCase", searchIgnoreCase_ );

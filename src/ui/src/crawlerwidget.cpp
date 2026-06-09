@@ -79,6 +79,11 @@
 
 static constexpr char AnsiColorSequenceRegex[] = "\\x1B\\[([0-9]{1,4}((;|:)[0-9]{1,3})*)?[mK]";
 
+// CMTrace/SCCM log wrapper: <![LOG[message]LOG]!><time="..." date="..." component="..." ...>
+// Removing the opening tag and the closing tag together with its trailing metadata
+// leaves only the human-readable message. No-ops on lines without the wrapper.
+static constexpr char CmtraceWrapperRegex[] = "<!\\[LOG\\[|\\]LOG\\]!>.*$";
+
 // Palette for error signaling (yellow background)
 const QPalette CrawlerWidget::ErrorPalette( Qt::darkYellow );
 
@@ -633,12 +638,17 @@ void CrawlerWidget::applyConfiguration()
 
     font.setBold( config.useBoldFont() );
 
+    QString prefilter;
     if ( config.hideAnsiColorSequences() ) {
-        logData_->setPrefilter( AnsiColorSequenceRegex );
+        prefilter = AnsiColorSequenceRegex;
     }
-    else {
-        logData_->setPrefilter( {} );
+    if ( config.extractCmtraceMessage() ) {
+        if ( !prefilter.isEmpty() ) {
+            prefilter += QLatin1Char( '|' );
+        }
+        prefilter += CmtraceWrapperRegex;
     }
+    logData_->setPrefilter( prefilter );
 
     logMainView_->setLineNumbersVisible( config.mainLineNumbersVisible() );
 
