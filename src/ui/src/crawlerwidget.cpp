@@ -80,9 +80,11 @@
 static constexpr char AnsiColorSequenceRegex[] = "\\x1B\\[([0-9]{1,4}((;|:)[0-9]{1,3})*)?[mK]";
 
 // CMTrace/SCCM log wrapper: <![LOG[message]LOG]!><time="..." date="..." component="..." ...>
-// Removing the opening tag and the closing tag together with its trailing metadata
-// leaves only the human-readable message. No-ops on lines without the wrapper.
-static constexpr char CmtraceWrapperRegex[] = "<!\\[LOG\\[|\\]LOG\\]!>.*$";
+// Removing the opening tag (anchored to line start) and the closing tag together with its
+// trailing metadata (anchored to the canonical "><time=" terminator) leaves only the message.
+// Anchoring keeps a message that merely contains "]LOG]!>" from being truncated, and no-ops
+// on lines without the wrapper.
+static constexpr char CmtraceWrapperRegex[] = "^<!\\[LOG\\[|\\]LOG\\]!><time=.*$";
 
 // Palette for error signaling (yellow background)
 const QPalette CrawlerWidget::ErrorPalette( Qt::darkYellow );
