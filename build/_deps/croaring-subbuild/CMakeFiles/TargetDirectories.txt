@@ -1,3 +1,0 @@
-/home/savage-henry/projects/klogg/build/_deps/croaring-subbuild/CMakeFiles/croaring-populate.dir
-/home/savage-henry/projects/klogg/build/_deps/croaring-subbuild/CMakeFiles/edit_cache.dir
-/home/savage-henry/projects/klogg/build/_deps/croaring-subbuild/CMakeFiles/rebuild_cache.dir

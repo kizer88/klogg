@@ -1,3 +1,0 @@
-/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/CMakeFiles/simdutf-populate.dir
-/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/CMakeFiles/edit_cache.dir
-/home/savage-henry/projects/klogg/build/_deps/simdutf-subbuild/CMakeFiles/rebuild_cache.dir
