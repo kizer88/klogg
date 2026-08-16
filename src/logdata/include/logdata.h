@@ -103,6 +103,7 @@ class LogData : public AbstractLogData {
     QTextCodec* getDetectedEncoding() const;
 
     void setPrefilter(const QString& prefilterPattern);
+    void setFormatCmtrace(bool enable);
 
     struct RawLines {
         LineNumber startLine;
@@ -113,6 +114,7 @@ class LogData : public AbstractLogData {
         TextDecoder textDecoder;
 
         QRegularExpression prefilterPattern;
+        bool formatCmtrace = false;
 
       public:
         klogg::vector<QString> decodeLines() const;
@@ -183,6 +185,7 @@ class LogData : public AbstractLogData {
     MonitoredFileStatus fileChangedOnDisk_;
 
     QString prefilterPattern_;
+    bool formatCmtrace_ = false;
 };
 
 #endif

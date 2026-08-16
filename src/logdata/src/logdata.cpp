@@ -99,10 +99,33 @@ LogData::~LogData()
     operationQueue_.shutdown();
 }
 
+static QString formatCmtraceLine( QString line )
+{
+    static const QRegularExpression cmtraceRegex(
+        QLatin1String( "^<!\\[LOG\\[(?P<msg>.*?)\\]LOG\\]!><time=\"(?P<time>[^\"]*)\"(?:[^>]*?component=\"(?P<comp>[^\"]*)\")?(?:[^>]*?file=\"(?P<file>[^\"]*)\")?[^>]*>$" )
+    );
+
+    const auto match = cmtraceRegex.match( line );
+    if ( match.hasMatch() ) {
+        const QString time = match.captured( QStringLiteral("time") );
+        const QString comp = match.captured( QStringLiteral("comp") ).isEmpty() ? QStringLiteral("Unknown") : match.captured( QStringLiteral("comp") );
+        const QString msg = match.captured( QStringLiteral("msg") );
+        const QString file = match.captured( QStringLiteral("file") ).isEmpty() ? QStringLiteral("Unknown") : match.captured( QStringLiteral("file") );
+
+        return QStringLiteral("[%1]::[%2]::[%3]::[%4]").arg( time, comp, msg, file );
+    }
+    return line;
+}
+
 void LogData::setPrefilter( const QString& prefilterPattern )
 {
     IndexingData::MutateAccessor scopedAccessor{ indexing_data_.get() };
     prefilterPattern_ = prefilterPattern;
+}
+
+void LogData::setFormatCmtrace( bool enable )
+{
+    formatCmtrace_ = enable;
 }
 
 void LogData::attachFile( const QString& fileName )
@@ -364,6 +387,7 @@ LogData::RawLines LogData::getLinesRaw( LineNumber firstLine, LinesCount number 
                   ? QRegularExpression( prefilterPattern_,
                                         QRegularExpression::CaseInsensitiveOption )
                   : QRegularExpression{};
+        rawLines.formatCmtrace = formatCmtrace_;
 
         ScopedFileHolder<FileHolder> fileHolder( attached_file_.get() );
 
@@ -489,6 +513,10 @@ klogg::vector<QString> LogData::RawLines::decodeLines() const
                 decodedLine.remove( prefilterPattern );
             }
 
+            if ( formatCmtrace ) {
+                decodedLine = formatCmtraceLine( std::move( decodedLine ) );
+            }
+
             decodedLines.push_back( std::move( decodedLine ) );
 
             lineStart = lineEnd;
@@ -514,20 +542,17 @@ klogg::vector<std::string_view> LogData::RawLines::buildUtf8View() const
     }
 
     try {
-        // const auto optimizeForNotLatinEncodings
-        //     = Configuration::get().optimizeForNotLatinEncodings();
-
         lines.reserve( endOfLines.size() );
 
         std::string_view wholeString;
 
-        if ( prefilterPattern.pattern().isEmpty() && textDecoder.encodingParams.isUtf8Compatible ) {
+        if ( !formatCmtrace && prefilterPattern.pattern().isEmpty() && textDecoder.encodingParams.isUtf8Compatible ) {
             wholeString = std::string_view( buffer.data(), buffer.size() );
         }
         else {
 
             QString utf16Data;
-            if ( prefilterPattern.pattern().isEmpty() && textDecoder.encodingParams.isUtf16LE ) {
+            if ( !formatCmtrace && prefilterPattern.pattern().isEmpty() && textDecoder.encodingParams.isUtf16LE ) {
                 utf16Data = QString::fromRawData( reinterpret_cast<const QChar*>( buffer.data() ),
                                                   klogg::isize( buffer ) / 2 );
             }
@@ -539,17 +564,21 @@ klogg::vector<std::string_view> LogData::RawLines::buildUtf8View() const
                 utf16Data.remove( prefilterPattern );
             }
 
+            if ( formatCmtrace && utf16Data.contains( QLatin1String("<![LOG[") ) ) {
+                QStringList transformedLines;
+                const auto rawLineList = utf16Data.split( QLatin1Char('\n') );
+                transformedLines.reserve( rawLineList.size() );
+                for ( const auto& rawLine : rawLineList ) {
+                    transformedLines.push_back( formatCmtraceLine( rawLine ) );
+                }
+                utf16Data = transformedLines.join( QLatin1Char('\n') );
+            }
+
             size_t resultSize = 0;
-            // if ( !optimizeForNotLatinEncodings ) {
-            //     utf8Data_ = utf16Data.toUtf8();
-            //     resultSize = static_cast<size_t>( utf8Data_.size() );
-            // }
-            // else {
-            utf8Data_.resize( buffer.size() * 4 );
+            utf8Data_.resize( static_cast<size_t>( utf16Data.size() ) * 4 );
             resultSize = simdutf::convert_utf16_to_utf8(
                 reinterpret_cast<const char16_t*>( utf16Data.utf16() ),
                 static_cast<size_t>( utf16Data.size() ), utf8Data_.data() );
-            // }
 
             wholeString = { utf8Data_.data(), resultSize };
         }
